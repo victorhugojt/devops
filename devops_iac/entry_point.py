@@ -1,10 +1,9 @@
 import sys
-import local_iac
 
 import click
 
 from devops_iac.cli import (
-    local,
+    local_cli,
 )
 
 DEFAULT_LOG_LEVEL = "INFO"
@@ -20,7 +19,7 @@ def cli(verbose=DEFAULT_LOG_LEVEL):
 
 def main():
     try:
-        cli.add_command(local_iac.provisionning)
+        cli.add_command(local_cli.local)
         cli()
     except:
         ce = click.ClickException('Error executing command')

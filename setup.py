@@ -25,7 +25,7 @@ setup(
     package_dir={"": "."},
     packages=find_packages(where="."),
     install_requires=read_requirements("requirements.txt"),
-    entry_points={"console_scripts": ["devops-iac=devops-iac.entry_point:main"]},
+    entry_points={"console_scripts": ["devops_iac=devops_iac.entry_point:main"]},
     python_requires=">=3.7.0,<3.8.0",
     license="",
 )
