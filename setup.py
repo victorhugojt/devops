@@ -16,7 +16,7 @@ def read_requirements(file_name):
 
 
 setup(
-    name="devops-iac",
+    name="devops_iac",
     version='1.0.0',
     author="VictorHJ",
     description="devops rampup tools",
