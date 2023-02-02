@@ -1,12 +1,40 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+
 Vagrant.configure("2") do |config|
-  (1..6).each do |i|
-    config.vm.define "node-#{i}" do |node|
-      node.vm.box = "ubuntu/bionic64"
-      node.vm.hostname = "node-#{i}"
-      node.vm.network "private_network", ip: "192.168.33.#{i}"
-    end
-  end
+  config.vm.box = "hashicorp/bionic64"
+  node.vm.hostname = "host-ngnix-front"
+  node.vm.network "private_network", ip: "192.168.33.1"
 end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  node.vm.hostname = "host-redis-processor"
+  node.vm.network "private_network", ip: "192.168.33.2"
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  node.vm.hostname = "host-auth1"
+  node.vm.network "private_network", ip: "192.168.33.3"
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  node.vm.hostname = "host-auth2"
+  node.vm.network "private_network", ip: "192.168.33.4"
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  node.vm.hostname = "host-backend1"
+  node.vm.network "private_network", ip: "192.168.33.5"
+end
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  node.vm.hostname = "host-backend2"
+  node.vm.network "private_network", ip: "192.168.33.6"
+end
+
