@@ -1,19 +1,11 @@
-import vagrant
-
+import subprocess
 
 def process():
     print('Deploying VM using vagrant')
 
     vagrantfile = '/vm_config.vagrantfile'
 
-    # Initialize the Vagrant environment
-    v = vagrant.Vagrant(vagrantfile)
+    p = subprocess.run(["python", "--version"])
+    print(p.returncode)
 
-    # Start the virtual machine
-    v.up()
-
-    # Verify that the virtual machine is running
-    print(v.status())
-
-    # Stop the virtual machine
-    # v.halt()
+    

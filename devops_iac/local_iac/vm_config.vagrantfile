@@ -1,40 +1,53 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
 Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  node.vm.hostname = "host-ngnix-front"
-  node.vm.network "private_network", ip: "192.168.33.1"
-end
+  config.vm.provision "shell", inline: "echo Hello"
+  config.vm.provision "shell", path:'common.sh'
+  
+  # debian based use:apt-get
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  node.vm.hostname = "host-redis-processor"
-  node.vm.network "private_network", ip: "192.168.33.2"
-end
+  config.vm.define "ngnix" do |ngnix|
+    ngix.vm.box = "ngnix"
+    ngix.vm.hostname = "host-ngnix-processor"
+    ngix.vm.network "private_network", ip: "192.168.33.1"
+    ngix.vm.provision "shell", path:'ngnix.sh'
+  end
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  node.vm.hostname = "host-auth1"
-  node.vm.network "private_network", ip: "192.168.33.3"
-end
+  config.vm.define "redis" do |redis|
+    redis.vm.box = "redis"
+    redis.vm.hostname = "host-redis-processor"
+    redis.vm.network "private_network", ip: "192.168.33.2"
+    redis.vm.provision "shell", path:'redis.sh'
+  end
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  node.vm.hostname = "host-auth2"
-  node.vm.network "private_network", ip: "192.168.33.4"
-end
+  config.vm.define "auth1" do |auth1|
+    auth1.vm.box = "hashicorp/bionic64"
+    auth1.vm.hostname = "host-auth1"
+    auth1.vm.network "private_network", ip: "192.168.33.3"
+    auth1.vm.provision "shell", path:'auth.sh'
+  end
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  node.vm.hostname = "host-backend1"
-  node.vm.network "private_network", ip: "192.168.33.5"
-end
+  config.vm.define "auth2" do |auth2|
+    auth2.vm.box = "hashicorp/bionic64"
+    auth2.vm.hostname = "host-auth1"
+    auth2.vm.network "private_network", ip: "192.168.33.4"
+    auth2.vm.provision "shell", path:'auth.sh'
+  end
 
-Vagrant.configure("2") do |config|
-  config.vm.box = "hashicorp/bionic64"
-  node.vm.hostname = "host-backend2"
-  node.vm.network "private_network", ip: "192.168.33.6"
+  config.vm.define "backend1" do |backend1|
+    backend1.vm.box = "hashicorp/bionic64"
+    backend1.vm.hostname = "host-backend1"
+    backend1.vm.network "private_network", ip: "192.168.33.5"
+    backend1.vm.provision "shell", path:'backend.sh'
+  end
+
+  config.vm.define "backend2" do |backend2|
+    backend2.vm.box = "hashicorp/bionic64"
+    backend2.vm.hostname = "host-backend2"
+    backend2.vm.network "private_network", ip: "192.168.33.6"
+    backend2.vm.provision "shell", path:'backend.sh'
+  end
+
 end
 
