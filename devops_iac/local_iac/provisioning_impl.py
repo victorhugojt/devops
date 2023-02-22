@@ -1,11 +1,7 @@
 import subprocess
 
 def process():
-    print('Deploying VM using vagrant')
+    print('Deploying VMs using vagrant')
 
-    # vagrantfile = '/vm_config.vagrantfile'
-
-    p = subprocess.run(["python", "--version"])
+    p = subprocess.run(["vagrant", "up"])
     print(p.returncode)
-
-    

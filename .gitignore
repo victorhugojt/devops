@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# ignore the dir Vagrant created
+.vagrant/ 
+
 # Distribution / packaging
 .Python
 build/

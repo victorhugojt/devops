@@ -14,3 +14,9 @@ virtualenv venv_devops
 ```sh
 source venv_devops/bin/activate
 ```
+
+# cli usage
+
+```sh
+devops_iac local provisioning 
+```
