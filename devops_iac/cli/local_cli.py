@@ -9,5 +9,6 @@ def local():
 
 
 @local.command(short_help="Vagrant Iac")
-def provisioning():
-    provisioning_impl.process()
+@click.option("-a", "--action", required=True, type=click.STRING)
+def provisioning(action):
+    provisioning_impl.process(action)
