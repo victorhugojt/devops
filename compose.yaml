@@ -1,38 +1,30 @@
-services:
-  frontend:
-    image: awesome/webapp
-    ports:
-      - "443:8043"
-    networks:
-      - front-tier
-      - back-tier
-    configs:
-      - httpd-config
-    secrets:
-      - server-certificate
+version: '3'
 
-  backend:
-    image: awesome/database
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd
+      - MYSQL_DATABASE=spbapidb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    restart: always
+    ports:
+      - 3306:3306
     volumes:
-      - db-data:/etc/data
-    networks:
-      - back-tier
+      - mysqldb:/var/lib/mysql
+  api:
+    container_name: api
+    image: spring-boot-api-tutorial-img
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysqldb
+    ports:
+      - 8080:8080
+    restart: always
 
 volumes:
-  db-data:
-    driver: flocker
-    driver_opts:
-      size: "10GiB"
-
-configs:
-  httpd-config:
-    external: true
-
-secrets:
-  server-certificate:
-    external: true
-
-networks:
-  # The presence of these objects is sufficient to define them
-  front-tier: {}
-  back-tier: {}
+  mysqldb:
