@@ -1,0 +1,1 @@
+docker ps --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}"}' --filter status=running
