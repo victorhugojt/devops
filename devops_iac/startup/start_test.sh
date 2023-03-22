@@ -1,4 +1,4 @@
-# Order : redis, users, auth, todo, front, log
+# try docker network (to learn)
 
 docker run --name rampup-redis -p 6379:6379 -d redis 
 
