@@ -47,4 +47,11 @@ Vagrant.configure("2") do |config|
     todos1.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/todos.sh"
   end
 
+  config.vm.define "users" do |users|
+    users.vm.box = "bento/ubuntu-22.04"
+    users.vm.hostname = "host-users"
+    users.vm.network "private_network", ip: "192.168.33.8"
+    users.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/users-api/users.sh"
+  end
+
 end
