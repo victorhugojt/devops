@@ -13,7 +13,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "redis" do |redis|
-     redis.vm.box = "redis"
+     redis.vm.box = "bento/ubuntu-22.04"
      redis.vm.hostname = "host-redis-processor"
      redis.vm.network "private_network", ip: "192.168.33.3"
      redis.vm.provision "shell", path:'/Users/victor.jimenezt/study/devops/devops_iac/startup/redis/redis.sh'
@@ -41,10 +41,10 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "todos2" do |todos2|
-    todos1.vm.box = "bento/ubuntu-22.04"
-    todos1.vm.hostname = "host-todos-2"
-    todos1.vm.network "private_network", ip: "192.168.33.7"
-    todos1.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/todos.sh"
+    todos2.vm.box = "bento/ubuntu-22.04"
+    todos2.vm.hostname = "host-todos-2"
+    todos2.vm.network "private_network", ip: "192.168.33.7"
+    todos2.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/todos.sh"
   end
 
   config.vm.define "users" do |users|

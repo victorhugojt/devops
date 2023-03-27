@@ -18,5 +18,5 @@ source venv_devops/bin/activate
 # cli usage
 
 ```sh
-devops_iac local provisioning 
+devops_iac local provisioning -a up / destroy
 ```
