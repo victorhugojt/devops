@@ -10,6 +10,7 @@ Vagrant.configure("2") do |config|
     ngnix.vm.hostname = "host-ngnix-processor"
     ngnix.vm.network "private_network", ip: "192.168.33.2"
     ngnix.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/nginx.sh"
+    ngnix.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/frontend/env.list", destination: "env.list"
   end
 
   config.vm.define "redis" do |redis|
@@ -24,6 +25,7 @@ Vagrant.configure("2") do |config|
     auth1.vm.hostname = "host-auth1"
     auth1.vm.network "private_network", ip: "192.168.33.4"
     auth1.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/auth-api/auth.sh"
+    auth1.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/auth-api/env.list", destination: "env.list"
   end
 
   config.vm.define "auth2" do |auth2|
@@ -31,6 +33,7 @@ Vagrant.configure("2") do |config|
     auth2.vm.hostname = "host-auth1"
     auth2.vm.network "private_network", ip: "192.168.33.5"
     auth2.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/auth-api/auth.sh"
+    auth2.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/auth-api/env.list", destination: "env.list"
   end
 
   config.vm.define "todos1" do |todos1|
@@ -38,6 +41,7 @@ Vagrant.configure("2") do |config|
     todos1.vm.hostname = "host-todos-1"
     todos1.vm.network "private_network", ip: "192.168.33.6"
     todos1.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/todos.sh"
+    todos1.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/env.list", destination: "env.list"
   end
 
   config.vm.define "todos2" do |todos2|
@@ -45,6 +49,7 @@ Vagrant.configure("2") do |config|
     todos2.vm.hostname = "host-todos-2"
     todos2.vm.network "private_network", ip: "192.168.33.7"
     todos2.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/todos.sh"
+    todos2.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/todos-api/env.list", destination: "env.list"
   end
 
   config.vm.define "users" do |users|
@@ -52,6 +57,7 @@ Vagrant.configure("2") do |config|
     users.vm.hostname = "host-users"
     users.vm.network "private_network", ip: "192.168.33.8"
     users.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/users-api/users.sh"
+    users.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/users-api/env.list", destination: "env.list"
   end
 
 end
