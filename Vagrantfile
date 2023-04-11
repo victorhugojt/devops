@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
     ngnix.vm.hostname = "host-ngnix-processor"
     ngnix.vm.network "private_network", ip: "192.168.33.2"
     ngnix.vm.provision "file", source: "/Users/victor.jimenezt/study/devops/devops_iac/startup/frontend/env.list", destination: "./env.list"
-    ngnix.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/nginx.sh"
+    ngnix.vm.provision "shell", path: "/Users/victor.jimenezt/study/devops/devops_iac/startup/ngnix/nginx.sh"
   end
 
   config.vm.define "redis" do |redis|
