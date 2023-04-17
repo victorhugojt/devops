@@ -11,3 +11,5 @@ sudo apt update
 sudo apt install -y docker-ce
 
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+sudo usermod -aG docker vagrant
