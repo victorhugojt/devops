@@ -1,22 +1,20 @@
 services:
   frontend1:
-    image: victorhugojt/devops_rampup_front
-    build: ./frontend
+    image: victoremilio/devops_rampup_front:1.0
     ports:
       - 8080:8080
     environment:
       - PORT=8080
-      - AUTH_API_ADDRESS=http://auth-api:8000
-      - TODOS_API_ADDRESS=http://todos-api:8082
+      - AUTH_API_ADDRESS=http://192.168.33.4:8000
+      - TODOS_API_ADDRESS=http://192.168.33.6:8082
   frontend2:
-    image: victorhugojt/devops_rampup_front
-    build: ./frontend
+    image: victoremilio/devops_rampup_front:1.0
     ports:
       - 8081:8081
     environment:
       - PORT=8081
-      - AUTH_API_ADDRESS=http://auth-api:8000
-      - TODOS_API_ADDRESS=http://todos-api:8082
+      - AUTH_API_ADDRESS=http://192.168.33.4:8000
+      - TODOS_API_ADDRESS=http://192.168.33.6:8082
   nginx:
     image: victoremilio/devops_rampup_ngnix:1.0
     ports:

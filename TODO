@@ -1,3 +1,5 @@
 test local provisioning
 research ngnix front config
 research ngnix balancer config
+
+check IP for each service, before start
