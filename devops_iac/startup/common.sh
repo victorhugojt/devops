@@ -14,4 +14,4 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plu
 
 sudo usermod -aG docker vagrant
 
-docker login -p xxx -u xxx
+docker login -p xxx -u victorxxemilio
