@@ -1,5 +1,8 @@
 docker ps --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}" , "Ports":"{{ .Ports }}"}' --filter status=running
 
+docker ps --format '{"ID":"{{ .ID }}", "Image": "{{ .Image }}", "Names":"{{ .Names }}" }' --filter status=running
+
+
 docker tag victorhugojt/devops_rampup_front victoremilio/devops_rampup_front:1.0
 docker push victoremilio/devops_rampup_front:1.0
 
