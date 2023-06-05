@@ -59,8 +59,11 @@ resource "aws_instance" "host-redis" {
 }
 
 resource "aws_instance" "host-auth" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+  //ami           = "ami-830c94e3"
+  ami                    = lookup(var.AMI, var.AWS_REGION)
+  instance_type          = "t2.micro"
+  subnet_id              = aws_subnet.prod-subnet-public-1.id
+  vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
 
   provisioner "file" {
     source      = "devops_iac/startup/auth-api/env.list"
