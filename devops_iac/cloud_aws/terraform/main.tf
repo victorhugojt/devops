@@ -10,12 +10,14 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-2"
+  region = "us-east-1"
 }
 
 resource "aws_instance" "host-ngnix" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+  ami                    = lookup(var.AMI, var.AWS_REGION)
+  instance_type          = var.EC2_TYPE
+  subnet_id              = aws_subnet.proyecto-subnet-private1-us-east-1a.id
+  vpc_security_group_ids = ["${aws_security_group.private-ssh.id}"]
 
   provisioner "file" {
     source      = "devops_iac/startup/ngnix/docker-compose.yaml"
@@ -39,8 +41,10 @@ resource "aws_instance" "host-ngnix" {
 }
 
 resource "aws_instance" "host-redis" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+  ami                    = lookup(var.AMI, var.AWS_REGION)
+  instance_type          = var.EC2_TYPE
+  subnet_id              = aws_subnet.proyecto-subnet-private1-us-east-1a.id
+  vpc_security_group_ids = ["${aws_security_group.private-ssh.id}"]
 
   provisioner "file" {
     source      = "devops_iac/startup/redis/redis.sh"
@@ -58,12 +62,18 @@ resource "aws_instance" "host-redis" {
   }
 }
 
-resource "aws_instance" "host-auth" {
-  //ami           = "ami-830c94e3"
+resource "aws_instance" "bastion" {
   ami                    = lookup(var.AMI, var.AWS_REGION)
-  instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.prod-subnet-public-1.id
-  vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
+  instance_type          = var.EC2_TYPE
+  subnet_id              = aws_subnet.proyecto-subnet-public1-us-east-1a.id
+  vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
+}
+
+resource "aws_instance" "host-auth" {
+  ami                    = lookup(var.AMI, var.AWS_REGION)
+  instance_type          = var.EC2_TYPE
+  subnet_id              = aws_subnet.proyecto-subnet-private1-us-east-1a.id
+  vpc_security_group_ids = ["${aws_security_group.private-ssh.id}"]
 
   provisioner "file" {
     source      = "devops_iac/startup/auth-api/env.list"
@@ -87,8 +97,10 @@ resource "aws_instance" "host-auth" {
 }
 
 resource "aws_instance" "host-todo" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+  ami                    = lookup(var.AMI, var.AWS_REGION)
+  instance_type          = var.EC2_TYPE
+  subnet_id              = aws_subnet.proyecto-subnet-private1-us-east-1a.id
+  vpc_security_group_ids = ["${aws_security_group.private-ssh.id}"]
 
   provisioner "file" {
     source      = "devops_iac/startup/todos-api/env.list"
@@ -112,8 +124,10 @@ resource "aws_instance" "host-todo" {
 }
 
 resource "aws_instance" "host-users" {
-  ami           = "ami-830c94e3"
-  instance_type = "t2.micro"
+  ami                    = lookup(var.AMI, var.AWS_REGION)
+  instance_type          = var.EC2_TYPE
+  subnet_id              = aws_subnet.proyecto-subnet-private1-us-east-1a.id
+  vpc_security_group_ids = ["${aws_security_group.private-ssh.id}"]
 
   provisioner "file" {
     source      = "devops_iac/startup/users-api/env.list"

@@ -1,14 +1,17 @@
 variable "AWS_REGION" {
-  default = "eu-west-1"
+  default = "us-east-1"
 }
 variable "AMI" {
   type = map(string)
 
   default = {
-    # For demo purposes only, we are using ubuntu for the web1 and db1 instances
-    eu-west-1 = "ami-08ca3fed11864d6bb" # Ubuntu 20.04 x86
+    eu-east-1 = "ami-0715c1897453cabd1" # Amazon Linux 2023 AMI 2023.0.20230517.1 x86_64 HVM kernel-6.1
   }
 }
 variable "EC2_USER" {
   default = "ubuntu"
+}
+
+variable "EC2_TYPE" {
+  default = "t2.micro"
 }

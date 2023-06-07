@@ -1,8 +1,8 @@
 # Add internet gateway
-resource "aws_internet_gateway" "prod-igw" {
+resource "aws_internet_gateway" "proyecto-igw" {
   vpc_id = aws_vpc.prod-vpc.id
   tags = {
-    Name = "prod-igw"
+    Name = "proyecto-igw"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_route_table" "prod-public-crt" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.prod-igw.id
+    gateway_id = aws_internet_gateway.proyecto-igw.id
   }
 
   tags = {
