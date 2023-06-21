@@ -1,59 +1,58 @@
-# Add internet gateway
-resource "aws_internet_gateway" "proyecto-igw" {
-  vpc_id = aws_vpc.prod-vpc.id
+
+data "aws_vpc" "vpc" {
+  id = var.vpc_id
+}
+
+data "aws_subnet" "public_subnet" {
+  id     = var.public_subnet_id
+  vpc_id = data.aws_vpc.vpc.id
+}
+
+data "aws_subnet" "private_subnet" {
+  id     = var.private_subnet_id
+  vpc_id = data.aws_vpc.vpc.id
+}
+
+resource "aws_security_group" "bastion-allow-ssh" {
+  vpc_id      = data.aws_vpc.vpc.id
+  name        = "bastion-allow-ssh"
+  description = "security group for bastion that allows ssh and all egress traffic"
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = {
-    Name = "proyecto-igw"
+    Name = "bastion-allow-ssh"
   }
 }
 
-# Public routes
-resource "aws_route_table" "prod-public-crt" {
-  vpc_id = aws_vpc.prod-vpc.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.proyecto-igw.id
+resource "aws_security_group" "private-ssh" {
+  vpc_id      = data.aws_vpc.vpc.id
+  name        = "private-ssh"
+  description = "security group for private that allows ssh and all egress traffic"
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion-allow-ssh.id]
+  }
   tags = {
-    Name = "prod-public-crt"
+    Name = "private-ssh"
   }
-}
-resource "aws_route_table_association" "prod-crta-public-subnet-1" {
-  subnet_id      = aws_subnet.prod-subnet-public-1.id
-  route_table_id = aws_route_table.prod-public-crt.id
-}
-
-# Private routes
-resource "aws_route_table" "prod-private-crt" {
-  vpc_id = aws_vpc.prod-vpc.id
-
-  route {
-    cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.prod-nat-gateway.id
-  }
-
-  tags = {
-    Name = "prod-private-crt"
-  }
-}
-resource "aws_route_table_association" "prod-crta-private-subnet-1" {
-  subnet_id      = aws_subnet.prod-subnet-private-1.id
-  route_table_id = aws_route_table.prod-private-crt.id
-}
-
-# NAT Gateway to allow private subnet to connect out the way
-resource "aws_eip" "nat_gateway" {
-  vpc = true
-}
-resource "aws_nat_gateway" "prod-nat-gateway" {
-  allocation_id = aws_eip.nat_gateway.id
-  subnet_id     = aws_subnet.prod-subnet-public-1.id
-
-  tags = {
-    Name = "VPC Demo - NAT"
-  }
-
-  # To ensure proper ordering, add Internet Gateway as dependency
-  depends_on = [aws_internet_gateway.prod-igw]
 }

@@ -1,0 +1,13 @@
+Ask:
+1. vpc name and vpc id
+2. default objetcs and apply
+3. gateways ( not necessary)
+4. amazon linux or ubuntu specific
+
+replace resources for data
+review amis
+users
+only one instance
+no nginx - public front - autoscalation group - then load/balancer
+
+awsume
