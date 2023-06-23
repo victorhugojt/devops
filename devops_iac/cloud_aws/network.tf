@@ -31,8 +31,11 @@ resource "aws_security_group" "bastion-allow-ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "bastion-allow-ssh"
+    Name        = "bastion-allow-ssh"
+    project     = "ramp-up-devops"
+    responsible = "victor.jimenezt"
   }
+
 }
 
 resource "aws_security_group" "private-ssh" {
@@ -53,6 +56,9 @@ resource "aws_security_group" "private-ssh" {
     security_groups = [aws_security_group.bastion-allow-ssh.id]
   }
   tags = {
-    Name = "private-ssh"
+    Name        = "private-ssh"
+    project     = "ramp-up-devops"
+    responsible = "victor.jimenezt"
   }
+
 }

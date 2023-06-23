@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.AWS_REGION
 }
 
 data "aws_ami" "ubuntu-linux-2004" {
@@ -33,4 +33,10 @@ resource "aws_instance" "bastion" {
   instance_type          = var.EC2_TYPE
   subnet_id              = data.aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
+
+  tags = {
+    project     = "ramp-up-devops"
+    responsible = "victor.jimenezt"
+  }
+
 }
