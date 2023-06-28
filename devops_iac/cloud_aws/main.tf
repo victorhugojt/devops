@@ -11,6 +11,14 @@ terraform {
 
 provider "aws" {
   region = var.AWS_REGION
+
+  default_tags {
+    tags = {
+      project     = "ramp-up-devops"
+      responsible = "victor.jimenezt"
+    }
+  }
+
 }
 
 data "aws_ami" "ubuntu-linux-2004" {
@@ -34,9 +42,13 @@ resource "aws_instance" "bastion" {
   subnet_id              = data.aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
 
-  tags = {
+  volume_tags = {
     project     = "ramp-up-devops"
     responsible = "victor.jimenezt"
+  }
+
+  tags = {
+    Name = "bastion-vhjt"
   }
 
 }
