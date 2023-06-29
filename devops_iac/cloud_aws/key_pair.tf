@@ -1,6 +1,6 @@
-resource "aws_key_pair" "carlos_elv_key" {
+resource "aws_key_pair" "vhjt_key" {
   key_name   = "vhjt_key"
-  public_key = file("./public_key")
+  public_key = file("/Users/victor.jimenezt/ssh-keys/vjimenezt_public_key.public")
   tags = {
     project     = var.project,
     responsible = var.responsible

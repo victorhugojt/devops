@@ -143,3 +143,5 @@ dmypy.json
 # version control.
 #
 # example.tfvars
+
+**/vjimenezt_public_key.public/*
