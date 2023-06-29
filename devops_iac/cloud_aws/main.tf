@@ -14,8 +14,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      project     = "ramp-up-devops"
-      responsible = "victor.jimenezt"
+      project     = var.project
+      responsible = var.responsible
     }
   }
 
@@ -43,8 +43,8 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
 
   volume_tags = {
-    project     = "ramp-up-devops"
-    responsible = "victor.jimenezt"
+    project     = var.project
+    responsible = var.responsible
   }
 
   tags = {
