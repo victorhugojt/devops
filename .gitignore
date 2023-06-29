@@ -144,4 +144,5 @@ dmypy.json
 #
 # example.tfvars
 
-**/vjimenezt_public_key.public/*
+//~/.ssh/id_rsa.pub/*
+id_rsa
