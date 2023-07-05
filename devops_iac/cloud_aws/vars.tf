@@ -57,3 +57,15 @@ variable "public_key_path" {
   description = "public key for ssh"
   default     = "~/.ssh/id_rsa.pub"
 }
+
+variable "common_start_sh_path" {
+  type        = string
+  description = "path to common installers script"
+  default     = "devops_iac/cloud_aws/start-up/common.sh"
+}
+
+variable "jwt" {
+  type        = string
+  description = "jwt token"
+  default     = "PRFT"
+}
