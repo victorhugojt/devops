@@ -143,3 +143,6 @@ dmypy.json
 # version control.
 #
 # example.tfvars
+
+~/.ssh/id_rsa.pub/*
+id_rsa

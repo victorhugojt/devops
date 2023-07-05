@@ -29,3 +29,15 @@ variable "private_subnet_id" {
   description = "Public Subnet"
   default     = "subnet-0088df5de3a4fe490"
 }
+
+variable "project" {
+  type        = string
+  description = "project in aws"
+  default     = "ramp-up-devops"
+}
+
+variable "responsible" {
+  type        = string
+  description = "user in aws"
+  default     = "victor.jimenezt"
+}
