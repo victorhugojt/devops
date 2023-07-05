@@ -6,6 +6,10 @@ variable "EC2_USER" {
   default = "ubuntu"
 }
 
+variable "CONNECTION_PROTOCOL" {
+  default = "ssh"
+}
+
 variable "EC2_TYPE" {
   type        = string
   description = "EC2 instance type for Linux Server"
@@ -40,4 +44,16 @@ variable "responsible" {
   type        = string
   description = "user in aws"
   default     = "victor.jimenezt"
+}
+
+variable "private_key_path" {
+  type        = string
+  description = "private key for ssh"
+  default     = "~/.ssh/id_rsa"
+}
+
+variable "public_key_path" {
+  type        = string
+  description = "public key for ssh"
+  default     = "~/.ssh/id_rsa.pub"
 }
