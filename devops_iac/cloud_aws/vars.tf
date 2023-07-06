@@ -24,14 +24,14 @@ variable "vpc_id" {
 
 variable "public_subnet_id" {
   type        = string
-  description = "Private Subnet"
+  description = "Public Subnet"
   default     = "subnet-0088df5de3a4fe490"
 }
 
 variable "private_subnet_id" {
   type        = string
-  description = "Public Subnet"
-  default     = "subnet-0088df5de3a4fe490"
+  description = "Private Subnet"
+  default     = "subnet-0d74b59773148d704"
 }
 
 variable "project" {
@@ -61,7 +61,7 @@ variable "public_key_path" {
 variable "common_start_sh_path" {
   type        = string
   description = "path to common installers script"
-  default     = "devops_iac/cloud_aws/start-up/common.sh"
+  default     = "~/training/devops/devops_iac/cloud_aws/start-up/common.sh"
 }
 
 variable "jwt" {
