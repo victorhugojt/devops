@@ -5,3 +5,5 @@ research ngnix balancer config
 check IP for each service, before start
 
 ssh -J bastion host-auth
+
+destroy only one element

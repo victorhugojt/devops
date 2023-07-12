@@ -34,6 +34,13 @@ grep config.vm.define Vagrantfile | awk -F'"' '{print $2}' | xargs -P4 -I {} vag
 ssh -J bastion-vhjt ubuntu@10.1.83.39
 ```
 
+## logs ec2 instances
+```sh
+cat /var/log/cloud-init-output.log
+```
+
+
+terraform destroy -target='aws_instance.host-auth'
 
 Issues
 
