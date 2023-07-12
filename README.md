@@ -27,6 +27,14 @@ devops_iac local provisioning -a destroy
 grep config.vm.define Vagrantfile | awk -F'"' '{print $2}' | xargs -P4 -I {} vagrant up {}
 ```
 
+# AWS Terraform
+
+# Connections
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.83.39
+```
+
+
 Issues
 
 primero: no es un error de codigo, porque con el docker-compose funciona
