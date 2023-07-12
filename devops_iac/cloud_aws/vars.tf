@@ -69,3 +69,9 @@ variable "jwt" {
   description = "jwt token"
   default     = "PRFT"
 }
+
+variable "public_ssh_location" {
+  type        = string
+  description = "Public IP Address"
+  default     = "179.15.15.40/32"
+}
