@@ -12,8 +12,9 @@ sudo apt install -y docker-ce
 
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-sudo usermod -aG docker vagrant
+sudo usermod -aG docker ubuntu
 
-docker login -p xxx -u victorxxemilio
+# Only private images needs login 
+# docker login -p xx -u xx
 
 eval "${run}"
