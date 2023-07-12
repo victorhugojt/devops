@@ -17,4 +17,6 @@ sudo usermod -aG docker ubuntu
 # Only private images needs login 
 # docker login -p xx -u xx
 
+set -x
+
 eval "${run}"
