@@ -70,6 +70,12 @@ variable "jwt" {
   default     = "PRFT"
 }
 
+variable "redis_port" {
+  type        = string
+  description = "redis port"
+  default     = "6379"
+}
+
 variable "public_ssh_location" {
   type        = string
   description = "Public IP Address"
