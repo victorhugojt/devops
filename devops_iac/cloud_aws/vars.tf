@@ -76,6 +76,11 @@ variable "redis_port" {
   default     = "6379"
 }
 
+variable "redis_log_channel" {
+  type    = string
+  default = "log_channel"
+}
+
 variable "public_ssh_location" {
   type        = string
   description = "Public IP Address"
