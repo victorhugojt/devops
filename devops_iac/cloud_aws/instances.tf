@@ -57,7 +57,7 @@ resource "aws_instance" "frontend_host" {
   ami                    = data.aws_ami.ubuntu-linux-2004.id
   instance_type          = var.EC2_TYPE
   subnet_id              = data.aws_subnet.public_subnet.id
-  vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
+  vpc_security_group_ids = [aws_security_group.front_instance_security_group.id]
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
