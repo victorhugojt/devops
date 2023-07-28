@@ -27,18 +27,43 @@ devops_iac local provisioning -a destroy
 grep config.vm.define Vagrantfile | awk -F'"' '{print $2}' | xargs -P4 -I {} vagrant up {}
 ```
 
-Issues
+# AWS Terraform
 
-primero: no es un error de codigo, porque con el docker-compose funciona
+# Connections
+### redis
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.87.191
+```
 
-segundo: es un null pointer exception de toda la vida, significa que algo que esta llamando el servicio le esta devolviendo nil
+### front
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.3.250
+```
 
-tercero: la unica diferencia entre lo que estas corriendo en el docker-compose y vagrant son las variables de entorno
+### users
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.86.187
+```
 
-cuarto: la unica variable de entorno que cambia es users_api_address
+### auth
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.83.16
+```
+### todos
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.81.171
+```
+### logs
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.87.202
+```
+## logs ec2 instances
+```sh
+cat /var/log/cloud-init-output.log
+```
 
-quinto: la estas cambiando de http://dns:port a ip: port
 
-sexto: ambos servicios se pueden alcanzar entre si por la ip
-
-conclusion falta el http:// antes de la ip, sino go falla en hacer el curl por alguna razon y devuelve un token nil que el dev no verifica, lo que ocasiona el error en el servidor que viste
+## Destroy specific resource
+```sh
+terraform destroy -target='aws_instance.todos_host'
+```
