@@ -83,7 +83,7 @@ resource "aws_instance" "logs_host" {
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
-    run = "sudo docker run -p 8082:8082 --restart=always -d -e REDIS_PORT=${var.redis_port} -e REDIS_HOST=${aws_instance.redis_host.private_ip} -e REDIS_CHANNEL=${var.redis_log_channel} -e JWT_SECRET=${var.jwt} SERVER_PORT=8083 victoremilio/devops_rampup_log_processor:1.0"
+    run = "sudo docker run -p 8082:8082 --restart=always -d -e REDIS_PORT=${var.redis_port} -e REDIS_HOST=${aws_instance.redis_host.private_ip} -e REDIS_CHANNEL=${var.redis_log_channel} -e JWT_SECRET=${var.jwt} -e SERVER_PORT=8083 victoremilio/devops_rampup_log_processor:1.0"
   }))
 
   volume_tags = {
@@ -105,7 +105,7 @@ resource "aws_instance" "todos_host" {
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
-    run = "sudo docker run -p 8082:8082 --restart=always -d -e REDIS_PORT=${var.redis_port} -e REDIS_HOST=${aws_instance.redis_host.private_ip} -e REDIS_CHANNEL=${var.redis_log_channel} -e JWT_SECRET=${var.jwt} SERVER_PORT=8083 victoremilio/devops_rampup_todos:1.0"
+    run = "sudo docker run -p 8082:8082 --restart=always -d -e REDIS_PORT=${var.redis_port} -e REDIS_HOST=${aws_instance.redis_host.private_ip} -e REDIS_CHANNEL=${var.redis_log_channel} -e JWT_SECRET=${var.jwt} -e SERVER_PORT=8083 victoremilio/devops_rampup_todos:1.0"
   }))
 
   volume_tags = {

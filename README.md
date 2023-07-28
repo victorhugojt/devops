@@ -30,10 +30,33 @@ grep config.vm.define Vagrantfile | awk -F'"' '{print $2}' | xargs -P4 -I {} vag
 # AWS Terraform
 
 # Connections
+### redis
 ```sh
-ssh -J bastion-vhjt ubuntu@10.1.83.39
+ssh -J bastion-vhjt ubuntu@10.1.87.191
 ```
 
+### front
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.3.250
+```
+
+### users
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.86.187
+```
+
+### auth
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.83.16
+```
+### todos (no)
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.83.211
+```
+### logs (no)
+```sh
+ssh -J bastion-vhjt ubuntu@10.1.85.10
+```
 ## logs ec2 instances
 ```sh
 cat /var/log/cloud-init-output.log
