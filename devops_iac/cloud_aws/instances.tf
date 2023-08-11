@@ -149,7 +149,7 @@ resource "aws_instance" "host-auth" {
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
-    run = "docker run -p 8000:8000 --restart=always -d -e JWT_SECRET=${var.jwt} -e AUTH_API_PORT=8000 -e USERS_API_ADDRESS=${aws_instance.users_host.private_ip} victoremilio/devops_rampup_auth:1.0"
+    run = "docker run -p 8000:8000 --restart=always -d -e JWT_SECRET=${var.jwt} -e AUTH_API_PORT=8000 -e USERS_API_ADDRESS=http://${aws_instance.users_host.private_ip} victoremilio/devops_rampup_auth:1.0"
   }))
 
   volume_tags = {
