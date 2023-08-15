@@ -47,7 +47,7 @@ ssh -J bastion-vhjt ubuntu@10.1.81.139
 
 ### auth
 ```sh
-ssh -J bastion-vhjt ubuntu@10.1.80.133
+ssh -J bastion-vhjt ubuntu@10.1.84.35
 ```
 ### todos
 ```sh
