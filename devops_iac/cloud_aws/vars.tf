@@ -106,7 +106,7 @@ variable "tg_protocol" {
 
 variable "front_port" {
   type        = number
-  default     = 3030
+  default     = 8080
   description = "This is the port for the inbound rule that allowed front to the ec2 instance"
 }
 

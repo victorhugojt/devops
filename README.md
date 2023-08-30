@@ -37,17 +37,17 @@ ssh -J bastion-vhjt ubuntu@10.1.87.191
 
 ### front
 ```sh
-ssh -J bastion-vhjt ubuntu@10.1.3.250
+ssh -J bastion-vhjt ubuntu@10.1.4.45
 ```
 
 ### users
 ```sh
-ssh -J bastion-vhjt ubuntu@10.1.86.187
+ssh -J bastion-vhjt ubuntu@10.1.81.139
 ```
 
 ### auth
 ```sh
-ssh -J bastion-vhjt ubuntu@10.1.83.16
+ssh -J bastion-vhjt ubuntu@10.1.84.35
 ```
 ### todos
 ```sh
@@ -65,5 +65,5 @@ cat /var/log/cloud-init-output.log
 
 ## Destroy specific resource
 ```sh
-terraform destroy -target='aws_instance.todos_host'
+terraform destroy -target='aws_instance.host-auth'
 ```

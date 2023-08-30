@@ -18,6 +18,13 @@ resource "aws_security_group" "private-ssh" {
     cidr_blocks     = ["${var.public_ssh_location}"]
   }
 
+  ingress {
+    from_port   = 0
+    to_port     = 65535
+    protocol    = "tcp"
+    cidr_blocks = ["${data.aws_vpc.vpc.cidr_block}"]
+  }
+
   tags = {
     Name = "private-ssh"
   }
