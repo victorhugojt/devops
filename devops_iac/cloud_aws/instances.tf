@@ -61,7 +61,7 @@ resource "aws_instance" "frontend_host" {
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
-    run = "sudo docker run -p 8080:8080 --restart=always -d -e PORT=8080 -e AUTH_API_ADDRESS=${aws_instance.host-auth.private_ip} -e TODOS_API_ADDRESS=${aws_instance.todos_host.private_ip} victoremilio/devops_rampup_front:1.0"
+    run = "sudo docker run -p 8080:8080 --restart=always -d -e PORT=8080 -e AUTH_API_ADDRESS=http://${aws_instance.host-auth.private_ip}:8000 -e TODOS_API_ADDRESS=http://${aws_instance.todos_host.private_ip}:8002 victoremilio/devops_rampup_front:1.0"
   }))
 
   volume_tags = {
@@ -149,7 +149,7 @@ resource "aws_instance" "host-auth" {
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
-    run = "docker run -p 8000:8000 --restart=always -d -e JWT_SECRET=${var.jwt} -e AUTH_API_PORT=8000 -e USERS_API_ADDRESS=http://${aws_instance.users_host.private_ip} victoremilio/devops_rampup_auth:1.0"
+    run = "docker run -p 8000:8000 --restart=always -d -e JWT_SECRET=${var.jwt} -e AUTH_API_PORT=8000 -e USERS_API_ADDRESS=http://${aws_instance.users_host.private_ip}:8083 victoremilio/devops_rampup_auth:1.0"
   }))
 
   volume_tags = {

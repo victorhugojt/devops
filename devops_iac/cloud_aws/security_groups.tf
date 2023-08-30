@@ -20,7 +20,7 @@ resource "aws_security_group" "private-ssh" {
 
   ingress {
     from_port   = 0
-    to_port     = 0
+    to_port     = 65535
     protocol    = "tcp"
     cidr_blocks = ["${data.aws_vpc.vpc.cidr_block}"]
   }
