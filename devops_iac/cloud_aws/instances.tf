@@ -61,7 +61,7 @@ resource "aws_instance" "frontend_host" {
   key_name               = aws_key_pair.vhjt_key.key_name
 
   user_data = base64encode(templatefile(var.common_start_sh_path, {
-    run = "sudo docker run -p 8080:8080 --restart=always -d -e PORT=8080 -e AUTH_API_ADDRESS=http://${aws_instance.host-auth.private_ip}:8000 -e TODOS_API_ADDRESS=http://${aws_instance.todos_host.private_ip}:8002 victoremilio/devops_rampup_front:1.0"
+    run = "sudo docker run -p 8080:8080 --restart=always -d -e PORT=8080 -e AUTH_API_ADDRESS=http://${aws_instance.host-auth.private_ip}:8000 -e TODOS_API_ADDRESS=http://${aws_instance.todos_host.private_ip}:8082 victoremilio/devops_rampup_front:1.0"
   }))
 
   volume_tags = {
