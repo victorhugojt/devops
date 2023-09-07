@@ -1,7 +1,7 @@
 # Creating the autoscaling launch configuration that contains AWS EC2 instance details
 resource "aws_launch_configuration" "frontend_autoscaling_config" {
   name          = "frontend_config"
-  image_id      = data.aws_instance.frontend_host
+  image_id      = aws_instance.frontend_host.id
   instance_type = var.EC2_TYPE
   key_name      = "frontend-autoscaling-config"
 }
