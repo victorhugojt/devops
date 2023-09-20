@@ -167,3 +167,9 @@ variable "ssh_sg_ingress_port" {
   default     = 22
   description = "This is the port for the inbound rule that allowed ssh to the ec2 instance"
 }
+
+variable "ami_id" {
+  type        = string
+  default     = "ami-0d382e80be7ffdae5"
+  description = "Ubuntu 20.04"
+}
