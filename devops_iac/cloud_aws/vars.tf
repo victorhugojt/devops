@@ -110,14 +110,6 @@ variable "front_port" {
   description = "This is the port for the inbound rule that allowed front to the ec2 instance"
 }
 
-variable "lb_type" {
-  default = "application"
-}
-
-variable "front_lb_name" {
-  default = "FrontLB"
-}
-
 variable "front_lb_sg_name" {
   default = "front_lb_security_group"
 }
@@ -172,4 +164,12 @@ variable "ami_id" {
   type        = string
   default     = "ami-0d382e80be7ffdae5"
   description = "Ubuntu 20.04"
+}
+
+variable "lb_type" {
+  default = "application"
+}
+
+variable "front_lb_name" {
+  default = "FrontAppLoadBalancer"
 }
