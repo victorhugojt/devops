@@ -14,10 +14,6 @@ resource "aws_lb_target_group" "front_target_group" {
     unhealthy_threshold = 2
   }
 
-  tags = {
-    project     = var.project,
-    responsible = var.responsible
-  }
 }
 
 resource "aws_lb" "front_application_lb" {
