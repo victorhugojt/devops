@@ -12,11 +12,4 @@ resource "aws_autoscaling_group" "frontend_host_auto_scaling_group" {
     id = aws_launch_template.frontend_host.id
   }
 
-  tags = [
-    {
-      project     = var.project,
-      responsible = var.responsible,
-      Name        = "frontend_host_auto_scaling_group"
-    }
-  ]
 }
