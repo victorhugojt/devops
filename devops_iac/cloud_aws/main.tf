@@ -20,3 +20,10 @@ provider "aws" {
   }
 
 }
+
+resource "localfile" "host_config" {
+  content = templatefile("inventory.tmpl", {
+    aws_hosts = "XXXX"
+  })
+  filename = "./inventory"
+}
