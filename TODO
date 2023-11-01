@@ -13,3 +13,10 @@ print ssh from output
 redis in instance
 
 apm for nginx replace
+
+-------------------------
+
+Important: decouple terraform from ansible
+use hard code variables
+using docker module
+using roles (galaxy)

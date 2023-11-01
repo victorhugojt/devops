@@ -20,6 +20,15 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
   key_name               = aws_key_pair.vhjt_key.key_name
 
+  provisioner "file" {
+    source      = "./ansible/playbook.yaml"
+    destination = "/home/ubuntu/playbook.yaml"
+  }
+
+  user_data = base64encode(templatefile(var.common_start_sh_path, {
+    run = "ansible-playbook -u ubuntu /home/ubuntu/playbook.yaml"
+  }))
+
   volume_tags = {
     project     = var.project
     responsible = var.responsible
