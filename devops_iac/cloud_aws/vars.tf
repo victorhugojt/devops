@@ -71,6 +71,12 @@ variable "common_start_sh_path" {
   default     = "~/training/devops/devops_iac/cloud_aws/start-up/common.sh"
 }
 
+variable "ansible_start_sh_path" {
+  type        = string
+  description = "path to ansible install"
+  default     = "~/training/devops/devops_iac/cloud_aws/ansible/ansible.sh"
+}
+
 variable "jwt" {
   type        = string
   description = "jwt token"
