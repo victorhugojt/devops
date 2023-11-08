@@ -1,0 +1,24 @@
+- hosts: redis_host
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  vars:
+    app_name: redis
+    tag: latest
+
+  tasks:
+    - name: include role docker
+      include_role:
+        name: docker
+    - name: include role clear-container
+      include_role:
+        name: clear-container
+
+    - name: Execute docker container
+      docker_container:
+        name: "{{ app_name }}"
+        image: redis:{{ tag }}
+        state: started
+        restart_policy: unless-stopped
+        pull: true
