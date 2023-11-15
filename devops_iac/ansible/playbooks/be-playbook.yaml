@@ -1,0 +1,61 @@
+- hosts: all
+  become: true
+  
+  vars:
+    - redis_port: 6379
+    - redis_log_channel: log_channel
+    - jwt_secret: PRFT
+  
+  tasks:
+    - name: ensure repository key is installed
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: ensure docker registry is available
+      apt_repository: repo="deb [arch=amd64] https://download.docker.com/linux/ubuntu `lsb_release -cs` test" state=present
+
+    - name: ensure docker-ce are installed
+      apt: name=docker-ce update_cache=yes
+
+    - name: ensure docker-ce-cli are installed
+      apt: name=docker-ce-cli update_cache=yes
+
+    - name: ensure containerd.io are installed
+      apt: name=containerd.io update_cache=yes
+
+    - name: ensure cdocker-compose-plugin are installed
+      apt: name=docker-compose-plugin update_cache=yes
+
+    - service: name=docker state=restarted
+
+    tasks:
+        - name: Execute commands in docker container
+          command: sudo docker run --name redis --restart=always -d redis:latest
+          when: inventory_hostname is "redis_host"
+    
+    tasks:
+        - name: Execute commands in docker container
+          command: sudo docker run -p 8082:8082 --restart=always -d -e REDIS_PORT= {{ redis_port }} -e REDIS_HOST=${aws_instance.redis_host.private_ip} -e REDIS_CHANNEL= {{ redis_log_channel }} -e JWT_SECRET= {{ jwt_secret }} -e SERVER_PORT=8083 victoremilio/devops_rampup_log_processor:1.0"
+          when: inventory_hostname is "logs_host"
+
+    tasks:
+        - name: Execute commands in docker container
+          command: docker exec -it my_container bash -c 'echo "Hello remote machine"'
+          when: inventory_hostname is "todos_host"
+
+    tasks:
+        - name: Execute commands in docker container
+          command: docker exec -it my_container bash -c 'echo "Hello remote machine"'
+          when: inventory_hostname is "users_host"
+
+    tasks:
+        - name: Execute commands in docker container
+          command: docker exec -it my_container bash -c 'echo "Hello remote machine"'
+          when: inventory_hostname is "host-auth"
+
+    tasks:
+        - name: Execute commands in docker container
+          command: docker exec -it my_container bash -c 'echo "Hello remote machine"'
+          when: inventory_hostname is "frontend_host"
+        

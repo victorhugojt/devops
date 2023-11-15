@@ -1,0 +1,31 @@
+- hosts: users_host
+  become: yes
+  become_user: root
+  become_method: sudo
+
+  vars:
+    app_name: appUsers
+    tag: 1.0
+    jwt_secret: PRFT
+    server_port: 8083
+
+  tasks:
+    - name: include role docker
+      include_role:
+        name: docker
+    - name: include role clear-container
+      include_role:
+        name: clear-container
+
+    - name: Execute docker container
+      docker_container:
+        name: "{{ app_name }}"
+        image: victoremilio/devops_rampup_users:{{ tag }}
+        state: started
+        restart_policy: unless-stopped
+        pull: true
+        published_ports:
+          - "8083:8083"
+        env:
+          JWT_SECRET: "{{ jwt_secret }}"
+          SERVER_PORT: "{{ server_port }}"

@@ -1,0 +1,32 @@
+---
+- name: Install required packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  loop:  [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu `lsb_release -cs` test
+    state: present
+
+- name: Update apt and install docker-ce
+  apt: update_cache=yes name=docker-ce state=latest
+
+- name: Update apt and install docker-ce-cli
+  apt: update_cache=yes name=docker-ce-cli state=latest
+
+- name: Update apt and install containerd.io
+  apt: update_cache=yes name=containerd.io state=latest
+
+- name: Update apt and install docker-compose-plugin
+  apt: update_cache=yes name=docker-compose-plugin state=latest
+
+- name: Add user to docker grouop
+  ansible.builtin.command: sudo usermod -aG docker ubuntu

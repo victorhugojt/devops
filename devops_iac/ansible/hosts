@@ -1,0 +1,8 @@
+frontend_host ansible_host=10.1.1.20
+host_ip_addr ansible_host=10.1.82.198
+logs_host ansible_host=10.1.81.0
+redis_host ansible_host=10.1.83.236
+todos_host ansible_host=10.1.81.135
+users_host ansible_host=10.1.83.81
+
+# JumpBox for bastion and vars for use in playbooks with the IP's
