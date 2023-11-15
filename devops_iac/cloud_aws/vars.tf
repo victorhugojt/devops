@@ -71,6 +71,12 @@ variable "common_start_sh_path" {
   default     = "~/training/devops/devops_iac/cloud_aws/start-up/common.sh"
 }
 
+variable "ansible_bastion_start" {
+  type        = string
+  description = "path to ansible installer script"
+  default     = "~/training/devops/devops_iac/cloud_aws/start-up/ansible.sh"
+}
+
 variable "jwt" {
   type        = string
   description = "jwt token"

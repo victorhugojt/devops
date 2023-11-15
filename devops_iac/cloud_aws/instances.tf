@@ -20,6 +20,10 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
   key_name               = aws_key_pair.vhjt_key.key_name
 
+  user_data = base64encode(templatefile(var.ansible_bastion_start, {
+    run = "echo 'Ansible Installed '"
+  }))
+
   volume_tags = {
     project     = var.project
     responsible = var.responsible
@@ -171,8 +175,36 @@ output "host_ip_addr" {
   value = aws_instance.host-auth.private_ip
 }
 
+output "redis_host" {
+  value = aws_instance.redis_host.private_ip
+}
+
+output "frontend_host" {
+  value = aws_instance.frontend_host.private_ip
+}
+
+output "logs_host" {
+  value = aws_instance.logs_host.private_ip
+}
+
+output "todos_host" {
+  value = aws_instance.todos_host.private_ip
+}
+
+output "users_host" {
+  value = aws_instance.users_host.private_ip
+}
+
+
 output "common-script" {
   value = templatefile(var.common_start_sh_path, {
     run = "docker run -p 8000:8000 --restart=always -d -e JWT_SECRET=${var.jwt} -e AUTH_API_PORT=8000 -e USERS_API_ADDRESS=${aws_instance.users_host.private_ip} victoremilio/devops_rampup_auth:1.0"
   })
 }
+
+output "ansible-script" {
+  value = templatefile(var.ansible_bastion_start, {
+    run = "echo 'Ansible Installed ' "
+  })
+}
+
