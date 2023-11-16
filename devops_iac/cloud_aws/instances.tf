@@ -20,9 +20,7 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [aws_security_group.bastion-allow-ssh.id]
   key_name               = aws_key_pair.vhjt_key.key_name
 
-  user_data = base64encode(templatefile(var.ansible_bastion_start, {
-    run = "echo 'Ansible Installed '"
-  }))
+  user_data = file("${var.ansible_bastion_start}")
 
   volume_tags = {
     project     = var.project
