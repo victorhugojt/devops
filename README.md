@@ -62,8 +62,7 @@ ssh -J bastion-vhjt ubuntu@10.1.87.202
 cat /var/log/cloud-init-output.log
 ```
 
-
 ## Destroy specific resource
 ```sh
-terraform destroy -target='aws_instance.host-auth'
+terraform destroy -target='aws_instance.bastion'
 ```
