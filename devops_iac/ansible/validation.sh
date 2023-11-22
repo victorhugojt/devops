@@ -1,0 +1,1 @@
+ansible -m ping nodes -i ansible_hosts 2>/dev/null

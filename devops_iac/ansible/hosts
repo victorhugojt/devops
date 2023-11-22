@@ -1,17 +1,13 @@
 [proxy]
-bastion_host ansible_host=11111
+bastion_host ansible_host=54.219.121.37
 
 [nodes]
-users_host ansible_host=10.1.83.81
-frontend_host ansible_host=10.1.1.20
-host_ip_addr ansible_host=10.1.82.198
-logs_host ansible_host=10.1.81.0
-redis_host ansible_host=10.1.83.236
-todos_host ansible_host=10.1.81.135
+users_host ansible_host=10.1.82.143
+frontend_host ansible_host=10.1.6.200
+host_ip_addr ansible_host=10.1.86.96
+logs_host ansible_host=10.1.83.205
+redis_host ansible_host=10.1.82.121
+todos_host ansible_host=10.1.86.97
 
 [nodes:vars]
-ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@bastion.example.com"'
-
-# JumpBox for bastion and vars for use in playbooks with the IP's
-
-# {{ hostvars['nodes'][0].ansible_host }}
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@54.219.121.37"'
