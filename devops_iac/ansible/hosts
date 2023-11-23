@@ -1,5 +1,5 @@
 [proxy]
-bastion_host ansible_host=54.219.121.37
+bastion_host ansible_host=18.144.19.207
 
 [nodes]
 users_host ansible_host=10.1.82.143
@@ -10,4 +10,8 @@ redis_host ansible_host=10.1.82.121
 todos_host ansible_host=10.1.86.97
 
 [nodes:vars]
-ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@54.219.121.37"'
+ansible_port = 22
+ansible_user = ubuntu
+# private_key_file = ~/.ssh/id_rsa
+# ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ProxyCommand="ssh -o \'ForwardAgent yes\' ubuntu@18.144.19.207 -p 22 \'ssh-add ~/.ssh/id_rsa && nc %h %p\'"'
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@18.144.19.207"'
