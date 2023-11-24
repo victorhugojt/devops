@@ -59,6 +59,19 @@ variable "private_key_path" {
   default     = "~/.ssh/id_rsa"
 }
 
+variable "templates_path" {
+  type        = string
+  description = "template for ansible inventory"
+  default     = "~/training/devops/devops_iac/cloud_aws/templates/hosts.tpl"
+}
+
+variable "ansible_path" {
+  type        = string
+  description = "path to ansible folder"
+  default     = "~/training/devops/devops_iac/ansible"
+}
+
+
 variable "public_key_path" {
   type        = string
   description = "public key for ssh"

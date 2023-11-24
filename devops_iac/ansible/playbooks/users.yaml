@@ -5,9 +5,9 @@
 
   vars:
     app_name: appUsers
-    tag: 1.0
+    tag: "1.0"
     jwt_secret: PRFT
-    server_port: 8083
+    server_port: "8083"
 
   tasks:
     - name: include role docker
