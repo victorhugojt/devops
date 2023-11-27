@@ -28,5 +28,5 @@
 - name: Update apt and install docker-compose-plugin
   apt: update_cache=yes name=docker-compose-plugin state=latest
 
-- name: Add user to docker grouop
+- name: Add user to docker group
   ansible.builtin.command: sudo usermod -aG docker ubuntu

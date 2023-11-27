@@ -5,11 +5,14 @@
 
   vars:
     app_name: appAuth
-    tag: 1.0
-    users_api_adress: {{ hostvars['nodes'][0].ansible_host }}:8003
+    tag: "1.0"
+    users_api_adress: "{{ hostvars['users_host'].ansible_host }}:8003"
     jwt_secret: PRFT
-    server_port: 8083
-    auth_api_port: 8000
+    server_port: "8083"
+    auth_api_port: "8000"
+    redis_port: "6379"
+    redis_host: "{{ hostvars['redis_host'].ansible_host }}"
+    redis_channel: log_channel
 
   tasks:
     - name: include role docker

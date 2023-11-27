@@ -4,3 +4,4 @@ ansible nodes -m ansible.builtin.setup
 
 ansible-playbook -i hosts ~/training/devops/devops_iac/ansible/playbooks/first-playbook.yaml -u ubuntu
 
+ansible-playbook -i hosts ~/training/devops/devops_iac/ansible/playbooks/auth.yaml -u ubuntu
