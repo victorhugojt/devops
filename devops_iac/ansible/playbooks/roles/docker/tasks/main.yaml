@@ -4,7 +4,7 @@
     name: "{{ item }}"
     state: latest
     update_cache: yes
-  loop:  [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+  loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
 
 - name: Add Docker GPG apt Key
   apt_key:
@@ -30,3 +30,7 @@
 
 - name: Add user to docker group
   ansible.builtin.command: sudo usermod -aG docker ubuntu
+
+- name: Install Docker Module for Python
+  pip:
+    name: docker
