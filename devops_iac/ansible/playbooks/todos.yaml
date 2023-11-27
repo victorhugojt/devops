@@ -5,12 +5,12 @@
 
   vars:
     app_name: appTodos
-    tag: 1.0
-    redis_host: 10.0.0.1
-    redis_port: 6379
-    redis_log_channel: log_channel
+    tag: "1.0"
+    redis_host: "{{ hostvars['redis_host'].ansible_host }}"
+    redis_port: "6379"
+    redis_channel: log_channel
     jwt_secret: PRFT
-    server_port: 8083
+    server_port: "8083"
 
   tasks:
     - name: include role docker
