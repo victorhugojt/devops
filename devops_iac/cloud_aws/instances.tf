@@ -191,12 +191,13 @@ output "users_host" {
   value = aws_instance.users_host.private_ip
 }
 
-
+/*
 output "common-script" {
   value = templatefile(var.common_start_sh_path, {
     run = "docker run -p 8000:8000 --restart=always -d -e JWT_SECRET=${var.jwt} -e AUTH_API_PORT=8000 -e USERS_API_ADDRESS=${aws_instance.users_host.private_ip} victoremilio/devops_rampup_auth:1.0"
   })
 }
+*/
 
 output "ansible-script" {
   value = templatefile(var.ansible_bastion_start, {
