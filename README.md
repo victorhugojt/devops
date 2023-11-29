@@ -37,7 +37,7 @@ ssh -J bastion-vhjt ubuntu@10.1.87.191
 
 ### front
 ```sh
-ssh -J bastion-vhjt ubuntu@10.1.4.45
+ssh -J bastion-vhjt ubuntu@10.1.3.137
 ```
 
 ### users
