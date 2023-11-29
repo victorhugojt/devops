@@ -1,10 +1,14 @@
-- hosts: Movies_front_instance
+- hosts: frontend_host
   become: yes
   become_user: root
   become_method: sudo
 
   vars:
-    app_name: appFront
+    app_name: appFrontend
+    tag: "1.0"
+    auth_api_adress: "{{ hostvars['host-auth'].ansible_host }}:8003"
+    todo_api_adress: "{{ hostvars['todos_host'].ansible_host }}:8003"
+    server_port: "8080"
 
   tasks:
     - name: include role docker
@@ -14,30 +18,16 @@
       include_role:
         name: clear-container
 
-    - name: Get env file
-      fetch:
-        src: /home/ubuntu/.container.env
-        dest: /home/ubuntu/.container.env
-        flat: yes
-
-    - name: variables
-      shell:
-        cmd: |
-          cat /home/ubuntu/.container.env
-      register: variables
-
-    - name: debug var
-      debug:
-        var: variables
-
     - name: Execute docker container
       docker_container:
         name: "{{ app_name }}"
-        image: zeronetdev/rampup-front:{{ tag }}
+        image: victoremilio/devops_rampup_front:{{ tag }}
         state: started
         restart_policy: unless-stopped
         pull: true
         published_ports:
-          - "3030:3030"
+          - "8080:8080"
         env:
-          BACK_HOST: "{{ variables.stdout }}"
+          AUTH_API_ADDRESS: "{{ auth_api_adress }}"
+          TODOS_API_ADDRESS: "{{ todo_api_adress }}"
+          PORT: "{{ server_port }}"

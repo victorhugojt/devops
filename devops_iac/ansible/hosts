@@ -1,16 +1,16 @@
 [proxy]
-bastion_host ansible_host=54.176.53.10
+bastion_host ansible_host=54.241.94.39
 
 [nodes]
-users_host ansible_host=10.1.82.143
+users_host ansible_host=10.1.82.102
 host-auth ansible_host=10.1.86.96
-frontend_host ansible_host=10.1.6.200
-host_ip_addr ansible_host=10.1.86.96
-logs_host ansible_host=10.1.83.205
-redis_host ansible_host=10.1.82.121
-todos_host ansible_host=10.1.86.97
+frontend_host ansible_host=10.1.3.137
+host_ip_addr ansible_host=10.1.84.254
+logs_host ansible_host=10.1.84.219
+redis_host ansible_host=10.1.81.27
+todos_host ansible_host=10.1.86.139
 
 [nodes:vars]
 ansible_port = 22
 ansible_user = ubuntu
-ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@54.176.53.10"'
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q ubuntu@54.241.94.39"'
