@@ -1,0 +1,70 @@
+{
+    "AutoScalingGroups": [
+        {
+            "AutoScalingGroupName": "terraform-2023112212530910600000000b",
+            "AutoScalingGroupARN": "arn:aws:autoscaling:us-west-1:961518039473:autoScalingGroup:d99d833e-305e-4520-b603-8863a086d239:autoScalingGroupName/terraform-2023112212530910600000000b",
+            "LaunchTemplate": {
+                "LaunchTemplateId": "lt-0ed70f650d793fa66",
+                "LaunchTemplateName": "terraform-20231122125308460900000009"
+            },
+            "MinSize": 2,
+            "MaxSize": 3,
+            "DesiredCapacity": 2,
+            "DefaultCooldown": 300,
+            "AvailabilityZones": [
+                "us-west-1a",
+                "us-west-1c"
+            ],
+            "LoadBalancerNames": [],
+            "TargetGroupARNs": [
+                "arn:aws:elasticloadbalancing:us-west-1:961518039473:targetgroup/tf-20231122125301564200000001/7eba6c41d5e1b160"
+            ],
+            "HealthCheckType": "EC2",
+            "HealthCheckGracePeriod": 300,
+            "Instances": [
+                {
+                    "InstanceId": "i-0721374fec93ec180",
+                    "InstanceType": "t2.micro",
+                    "AvailabilityZone": "us-west-1a",
+                    "LifecycleState": "InService",
+                    "HealthStatus": "Healthy",
+                    "LaunchTemplate": {
+                        "LaunchTemplateId": "lt-0ed70f650d793fa66",
+                        "LaunchTemplateName": "terraform-20231122125308460900000009",
+                        "Version": "1"
+                    },
+                    "ProtectedFromScaleIn": false
+                },
+                {
+                    "InstanceId": "i-0d116b1de65eaedf2",
+                    "InstanceType": "t2.micro",
+                    "AvailabilityZone": "us-west-1c",
+                    "LifecycleState": "InService",
+                    "HealthStatus": "Healthy",
+                    "LaunchTemplate": {
+                        "LaunchTemplateId": "lt-0ed70f650d793fa66",
+                        "LaunchTemplateName": "terraform-20231122125308460900000009",
+                        "Version": "1"
+                    },
+                    "ProtectedFromScaleIn": false
+                }
+            ],
+            "CreatedTime": "2023-11-22T12:53:13.981000+00:00",
+            "SuspendedProcesses": [],
+            "VPCZoneIdentifier": "subnet-055c41fce697f9cca,subnet-0088df5de3a4fe490",
+            "EnabledMetrics": [],
+            "Tags": [],
+            "TerminationPolicies": [
+                "Default"
+            ],
+            "NewInstancesProtectedFromScaleIn": false,
+            "ServiceLinkedRoleARN": "arn:aws:iam::961518039473:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
+            "TrafficSources": [
+                {
+                    "Identifier": "arn:aws:elasticloadbalancing:us-west-1:961518039473:targetgroup/tf-20231122125301564200000001/7eba6c41d5e1b160",
+                    "Type": "elbv2"
+                }
+            ]
+        }
+    ]
+}

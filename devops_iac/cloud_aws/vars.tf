@@ -78,6 +78,12 @@ variable "public_key_path" {
   default     = "~/.ssh/id_rsa.pub"
 }
 
+variable "ags_ips_sh_path" {
+  type        = string
+  description = "path to sh to get asg instances"
+  default     = "~/training/devops/devops_iac/cloud_aws/start-up/ags_ips.sh"
+}
+
 variable "common_start_sh_path" {
   type        = string
   description = "path to common installers script"
